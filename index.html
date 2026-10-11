@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Travel Trap Detector</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="nav container">
+      <a class="brand" href="#home"><span class="logo">✦</span><span>Travel Trap Detector</span></a>
+      <nav class="desktop-nav">
+        <a href="#analyzer">Fare Analyzer</a><a href="#map">Scam Map</a><a href="#reports">Reports</a><a href="#assistant">Safety AI</a>
+      </nav>
+      <span class="demo-badge">Hackathon Prototype</span>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero container">
+      <div class="hero-copy">
+        <p class="eyebrow">TOURISM × AI × CONSUMER SAFETY</p>
+        <h1>Know the fair price.<br><span>Avoid the trap.</span></h1>
+        <p class="hero-text">Check a taxi quote, discover nearby traveller scam patterns, get a local-language negotiation phrase, and help the next traveller with a community report.</p>
+        <div class="hero-actions"><a href="#analyzer" class="button primary">Check a fare <span>→</span></a><a href="#map" class="button secondary">Explore alerts</a></div>
+        <p class="small-note">Prototype data for New Delhi. Results are guidance, not a guarantee or emergency service.</p>
+      </div>
+      <div class="hero-card">
+        <div class="card-top"><span>LIVE DEMO SCENARIO</span><span class="risk-pill high">HIGH RISK</span></div>
+        <h3>Delhi Airport → Connaught Place</h3>
+        <div class="hero-stats"><div><small>Quoted</small><strong>₹1,500</strong></div><div><small>Fair range</small><strong class="green">₹700–₹900</strong></div><div><small>Typical</small><strong>₹800</strong></div><div><small>Possible overcharge</small><strong class="orange">88%</strong></div></div>
+        <div class="mini-warning">⚠ Clear explanation + Hindi negotiation phrase included.</div>
+      </div>
+    </section>
+
+    <section id="analyzer" class="section container">
+      <div class="section-heading"><div><p class="eyebrow">01 — FARE INTELLIGENCE</p><h2>Is this fare fair?</h2><p>Enter a quote and get a transparent price range, risk assessment, and a practical next step.</p></div></div>
+      <div class="analyzer-grid">
+        <form id="fareForm" class="panel form-panel">
+          <div class="form-grid">
+            <label>City<select id="city"><option>New Delhi</option></select></label>
+            <label>Service type<select id="serviceType"><option>Airport Taxi</option><option>Auto Rickshaw</option><option>Taxi</option><option>Private Driver</option></select></label>
+            <label>From<select id="origin"><option>IGI Airport Terminal 3</option><option>Connaught Place</option><option>New Delhi Railway Station</option></select></label>
+            <label>To<select id="destination"><option>Connaught Place</option><option>Paharganj</option><option>India Gate</option><option>Karol Bagh</option></select></label>
+            <label>Quoted fare (INR)<input id="quotedFare" type="number" min="1" value="1500" required /></label>
+            <label>Trip time<select id="tripTime"><option>Daytime</option><option>Night</option></select></label>
+          </div>
+          <label class="check-row"><input id="meterRefused" type="checkbox" checked /> The driver refuses to use the meter</label>
+          <button class="button primary full" type="submit">Analyze this fare <span>→</span></button>
+          <p class="form-note">Uses seeded benchmark data for the prototype. A production system would use official tariffs, verified receipts, and moderated reports.</p>
+        </form>
+        <div id="fareResult" class="panel result-panel empty-result"><div class="empty-icon">₹</div><h3>Your result will appear here</h3><p>Try the demo quote of ₹1,500 from IGI Airport to Connaught Place.</p></div>
+      </div>
+    </section>
+
+    <section id="map" class="section alt-section">
+      <div class="container"><div class="section-heading map-head"><div><p class="eyebrow">02 — LOCATION INTELLIGENCE</p><h2>Traveller scam map</h2><p>Explore community-reported patterns. Reports are safety signals, not proof against an individual or business.</p></div><div id="mapFilters" class="filters"></div></div>
+      <div class="map-layout"><div id="scamMap"></div><aside class="map-feed"><div class="feed-title"><strong>Nearby alerts</strong><span id="reportCount">0 reports</span></div><div id="mapReportList" class="report-list"></div></aside></div></div>
+    </section>
+
+    <section id="reports" class="section container">
+      <div class="section-heading"><div><p class="eyebrow">03 — COMMUNITY INTELLIGENCE</p><h2>Report a travel issue</h2><p>Share factual information. In a real product, reports require moderation and privacy review before publication.</p></div></div>
+      <div class="reports-grid"><form id="reportForm" class="panel form-panel"><div class="form-grid"><label>Issue category<select id="reportCategory"><option>Transport</option><option>Tourist Trap</option><option>Guide</option><option>Restaurant</option><option>Money</option><option>Other</option></select></label><label>Severity<select id="reportSeverity"><option>Medium</option><option>High</option><option>Low</option></select></label><label>Approximate location<input id="reportLocation" value="Connaught Place" required /></label><label>Amount paid (optional)<input id="reportAmount" type="number" min="0" placeholder="1500" /></label><label class="wide">Report title<input id="reportTitle" placeholder="Example: Meter refusal and high fixed fare" required /></label><label class="wide">What happened?<textarea id="reportDescription" rows="4" placeholder="Describe the situation factually. Avoid personal names or private details." required></textarea></label><label class="wide">Suggested safe action<textarea id="reportAction" rows="2" placeholder="Example: Use an official counter and agree on meter use before starting."></textarea></label></div><button class="button primary full" type="submit">Submit community report</button><p class="form-note">For privacy, the prototype assigns an approximate map position. Do not enter personal data.</p></form>
+      <div class="panel report-explainer"><div class="icon-bubble">✓</div><h3>How reports become useful</h3><ol><li>Traveller submits a factual report.</li><li>System removes sensitive details and checks duplicates.</li><li>Moderators verify evidence where possible.</li><li>Patterns—not accusations—appear as local safety alerts.</li></ol><div id="reportSuccess" class="success-message hidden"></div></div></div>
+    </section>
+
+    <section id="assistant" class="section alt-section">
+      <div class="container ai-layout"><div><p class="eyebrow">04 — SAFETY AI</p><h2>Your practical travel-safety companion</h2><p class="ai-lead">Ask about your latest fare check, meter refusal, common local patterns, or a phrase to use. This prototype uses a lightweight, transparent rule-based assistant.</p><div class="quick-prompts"><button data-prompt="Is this taxi fare fair?">Is this taxi fare fair?</button><button data-prompt="What should I do if the driver refuses the meter?">Driver refuses meter</button><button data-prompt="What scams should I watch for?">Common scams nearby</button><button data-prompt="Give me the Hindi phrase">Give me Hindi phrase</button></div></div><div class="panel chat-panel"><div id="chatMessages" class="chat-messages"><div class="message bot">Hi! I can help assess a fare, explain local scam patterns, suggest a safe next action, or give you a Hindi phrase.</div></div><form id="assistantForm" class="chat-input"><input id="assistantQuestion" placeholder="Ask Safety AI…" required /><button type="submit" aria-label="Send">↑</button></form></div></div>
+    </section>
+
+    <section class="section container future"><p class="eyebrow">NEXT STEPS</p><h2>Built for a credible path to production</h2><div class="future-grid"><div><b>Verified pricing</b><span>Official tariffs, route distance, time, tolls, verified receipts</span></div><div><b>Trust & moderation</b><span>Evidence review, reporter reputation, duplicate detection, appeals</span></div><div><b>Travel-ready access</b><span>Offline city packs, translation, accessibility, trusted-contact sharing</span></div></div></section>
+  </main>
+  <footer><div class="container">Travel Trap Detector · Hackathon prototype · New Delhi demo data · Built for safer decisions before payment</div></footer>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="app.js"></script>
+</body>
+</html>

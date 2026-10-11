@@ -1,0 +1,74 @@
+{
+  "reports": [
+    {
+      "id": "seed-1",
+      "title": "Meter refusal and inflated fixed fare",
+      "category": "Transport",
+      "severity": "High",
+      "location": "IGI Airport Arrivals",
+      "lat": 28.5562,
+      "lng": 77.1,
+      "amount": 1500,
+      "description": "Drivers quoted a high fixed fare without explaining a meter or toll breakdown.",
+      "action": "Use an official/prepaid counter or agree on meter use and the total before loading luggage.",
+      "createdAt": "2026-10-10T09:00:00.000Z",
+      "status": "Demo community report"
+    },
+    {
+      "id": "seed-2",
+      "title": "Attraction closed redirection",
+      "category": "Tourist Trap",
+      "severity": "High",
+      "location": "Paharganj",
+      "lat": 28.642,
+      "lng": 77.214,
+      "amount": 0,
+      "description": "Unsolicited people claimed an attraction or hotel was closed and redirected travellers to a tour shop.",
+      "action": "Verify directly with the attraction or hotel before changing plans.",
+      "createdAt": "2026-10-09T12:00:00.000Z",
+      "status": "Demo community report"
+    },
+    {
+      "id": "seed-3",
+      "title": "Unofficial guide pressure",
+      "category": "Guide",
+      "severity": "Medium",
+      "location": "Connaught Place",
+      "lat": 28.6315,
+      "lng": 77.2167,
+      "amount": 900,
+      "description": "Visitors were pressured to accept a guide service before a full price was stated.",
+      "action": "Ask for credentials and agree on the total price before accepting a service.",
+      "createdAt": "2026-10-09T08:00:00.000Z",
+      "status": "Demo community report"
+    },
+    {
+      "id": "seed-4",
+      "title": "Unexpected restaurant service charge",
+      "category": "Restaurant",
+      "severity": "Medium",
+      "location": "Khan Market",
+      "lat": 28.6007,
+      "lng": 77.2276,
+      "amount": 450,
+      "description": "A large service charge was added to the bill without clear prior disclosure.",
+      "action": "Request an itemized bill and ask whether service charges were disclosed before ordering.",
+      "createdAt": "2026-10-08T14:00:00.000Z",
+      "status": "Demo community report"
+    },
+    {
+      "id": "seed-5",
+      "title": "Poor exchange rate / short change",
+      "category": "Money",
+      "severity": "Medium",
+      "location": "New Delhi Railway Station",
+      "lat": 28.6433,
+      "lng": 77.2197,
+      "amount": 0,
+      "description": "Exchange totals and fees were unclear until after cash was handed over.",
+      "action": "Confirm rate, commission, and total payout before exchanging money.",
+      "createdAt": "2026-10-08T10:00:00.000Z",
+      "status": "Demo community report"
+    }
+  ]
+}
